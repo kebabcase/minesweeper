@@ -1,0 +1,43 @@
+@import './cell';
+
+$board-toolbar-height: $cell-size * 2;
+
+%board-background {
+  border: solid #808080;
+  border-width: 0 1px 1px 0;
+  box-sizing: border-box;
+  background-color: #c0c0c0;
+}
+
+%board-toolbar-style {
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  > * {
+    @extend %board-toolbar-item-style;
+  }
+
+  > :first-child {
+    position: absolute;
+    left: 0;
+  }
+  > :last-child {
+    position: absolute;
+    right: 0;
+  }
+}
+
+%board-toolbar-item-style {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  height: 100%;
+}

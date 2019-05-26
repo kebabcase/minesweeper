@@ -1,0 +1,78 @@
+@import '../../styles/board';
+@import '../../styles/cell';
+
+.ms-cell-container {
+  @extend %board-background;
+  @extend %cell-static-style;
+
+  width: $cell-size;
+  height: $cell-size;
+
+  &:not(.hidden) {
+    @extend %cell-active-style;
+  }
+
+  * {
+    font-size: 1.2em;
+    font-weight: 600;
+    line-height: $cell-size;
+  }
+
+  // User clicked cell has mine in it; indicated with red background
+  &.wrong:not(.flagged):after {
+    background-color: red;
+  }
+
+  // Flagged non-mine cell; indicated by red X over the mine
+  &.game-over.flagged:not(.mine) > * {
+    background:
+      linear-gradient(to top left,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0) calc(50% - 1px),
+        rgba(255, 0, 0, 1) 50%,
+        rgba(0, 0, 0, 0) calc(50% + 1px),
+        rgba(0, 0, 0, 0) 100%),
+      linear-gradient(to top right,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0) calc(50% - 1px),
+        rgba(255, 0, 0, 1) 50%,
+        rgba(0, 0, 0, 0) calc(50% + 1px),
+        rgba(0, 0, 0, 0) 100%);
+  }
+
+  .flag {
+    color: red;
+  }
+
+  .indicator-1 {
+    color: blue;
+  }
+
+  .indicator-2 {
+    color: green;
+  }
+
+  .indicator-3 {
+    color: red;
+  }
+
+  .indicator-4 {
+    color: purple;
+  }
+
+  .indicator-5 {
+    color: maroon;
+  }
+
+  .indicator-6 {
+    color: turquoise;
+  }
+
+  .indicator-7 {
+    color: black;
+  }
+
+  .indicator-8 {
+    color: grey;
+  }
+}

@@ -1,0 +1,33 @@
+.ms-app-container {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  overflow-y: auto;
+
+  mat-toolbar {
+    background-color: #03DAC6;
+  }
+
+  .app-content-container {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: center;
+
+    width: 100%;
+    background-color: #018786;
+
+    .board-container {
+      height: 100%;
+      overflow-x: auto;
+
+      ms-board {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
