@@ -1,0 +1,62 @@
+<div class="ms-board-container">
+  <div class="board-toolbar">
+    <div class="flags-available">
+      <mat-icon>
+        flag
+      </mat-icon>
+      {{ flagsAvailable }}
+    </div>
+
+    <div class="face-button-container">
+      <button class="face-button"
+              [ngClass]="{
+                pressed: isMouseDown && isMouseEnteredFace
+              }"
+              (mousedown)="onMouseEnter('face'); onMouseDown()"
+              (mouseup)="onMouseLeave('face'); onMouseUp()"
+              (mouseenter)="onMouseEnter('face')"
+              (mouseleave)="onMouseLeave('face')"
+              (click)="onNewGame($event)">
+        <mat-icon *ngIf="isGameWon || isGameLose; else activeFace">
+          <ng-container *ngIf="isMouseDown && isMouseEnteredFace; else finishedFace">
+            plus_one
+          </ng-container>
+          <ng-template #finishedFace>
+            {{ isGameWon ? 'sentiment_very_satisfied' : 'sentiment_very_dissatisfied' }}
+          </ng-template>
+        </mat-icon>
+        <ng-template #activeFace>
+          <mat-icon>
+            {{ isMouseDown && isMouseEntered ? 'mood' : 'sentiment_neutral' }}
+          </mat-icon>
+        </ng-template>
+      </button>
+    </div>
+
+    <div class="timer">
+      <mat-icon>
+        timer
+      </mat-icon>
+      {{ timer | date:'mm:ss' }}
+    </div>
+  </div>
+
+  <div class="board-container"
+       *ngIf="board"
+       (mousedown)="onMouseDown()"
+       (mouseup)="onMouseUp()"
+       (mouseenter)="onMouseEnter()"
+       (mouseleave)="onMouseLeave()">
+    <div class="row-container"
+         *ngFor="let row of board; let rowIndex = index">
+      <div class="cell-container"
+           *ngFor="let cell of row; let colIndex = index">
+        <ms-cell [cell]="cell"
+                 [gameStatus]="gameStatus"
+                 [flagsAvailable]="flagsAvailable"
+                 (cellDiscover)="onCellDiscover($event)"
+                 (cellFlag)="onCellFlag($event)"></ms-cell>
+      </div>
+    </div>
+  </div>
+</div>

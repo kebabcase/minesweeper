@@ -1,0 +1,78 @@
+@import '../../styles/cell';
+@import '../../styles/board';
+
+.ms-board-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: fit-content;
+  height: fit-content;
+
+  border: solid #808080;
+  border-width: 1px 0 0 1px;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  .board-toolbar {
+    @extend %board-toolbar-style;
+    @extend %board-background;
+
+    height: $board-toolbar-height;
+
+    .timer {
+      padding-right: 3px;
+    }
+
+    .flags-available, .timer {
+      color: red;
+      font-weight: 600;
+    }
+
+    .face-button-container {
+      $face-button-size: $cell-size * 1.5;
+
+      width: $face-button-size;
+      height: $face-button-size;
+
+      border: none;
+      background: none;
+
+      .face-button {
+        @extend %cell-static-style;
+
+        border: none;
+        background: none;
+
+        &:focus {
+          outline: none;
+        }
+
+        &.pressed {
+          @extend %cell-active-style;
+          border: 2px inset #ececec;
+        }
+
+        > * {
+          color: #6200ee;
+          line-height: $face-button-size;
+        }
+      }
+    }
+  }
+
+  .board-container {
+    display: flex;
+    flex-direction: column;
+
+    max-height: $cell-size * 16;
+
+    .row-container {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+}

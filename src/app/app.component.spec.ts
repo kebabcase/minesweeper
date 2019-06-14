@@ -1,31 +1,36 @@
 import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
 
-describe('AppComponent', () => {
+import {
+  MatOptionModule,
+  MatSelectModule,
+  MatFormFieldModule,
+  MatToolbarModule,
+} from '@angular/material';
+
+import { ComponentsModule } from './components/components.module';
+
+import { MsAppComponent } from './app.component';
+
+describe('MsAppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        MatOptionModule,
+        MatSelectModule,
+        MatFormFieldModule,
+        MatToolbarModule,
+
+        ComponentsModule,
+      ],
       declarations: [
-        AppComponent
+        MsAppComponent,
       ],
     }).compileComponents();
   }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  it('should create the app.', () => {
+    const fixture = TestBed.createComponent(MsAppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'minesweeper'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('minesweeper');
-  });
-
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to minesweeper!');
   });
 });

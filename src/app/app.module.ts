@@ -1,16 +1,43 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  MatOptionModule,
+  MatSelectModule,
+  MatFormFieldModule,
+  MatToolbarModule,
+  MAT_RIPPLE_GLOBAL_OPTIONS,
+} from '@angular/material';
+
+import { ComponentsModule } from './components/components.module';
+
+import { MsAppComponent } from './app.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+
+    MatOptionModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatToolbarModule,
+
+    ComponentsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: MAT_RIPPLE_GLOBAL_OPTIONS,
+      useValue: { disabled: true },
+    },
+  ],
+  declarations: [
+    MsAppComponent,
+  ],
+  bootstrap: [
+    MsAppComponent,
+  ],
 })
-export class AppModule { }
+export class MsAppModule {
+}

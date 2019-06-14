@@ -1,0 +1,37 @@
+<div class="ms-cell-container"
+     [ngClass]="{
+       hidden: cell.hidden,
+       flagged: cell.flagged,
+       empty: cell.empty,
+       mine: cell.isMine(),
+       wrong: wrongChoice,
+       'game-over': isGameOver
+     }"
+     (mouseup)="onCellMouseup($event)">
+  <ng-container *ngIf="isGameOver && (cell.isMine() || cell.flagged); else gameActive">
+    <mat-icon *ngIf="cell.isMine() && cell.flagged; else showMine"
+              class="flag">
+      flag
+    </mat-icon>
+    <ng-template #showMine>
+      <mat-icon>
+        wb_sunny
+      </mat-icon>
+    </ng-template>
+  </ng-container>
+
+  <ng-template #gameActive>
+    <ng-container *ngIf="cell.hidden; else discovered">
+      <mat-icon *ngIf="cell.flagged"
+                class="flag">
+        flag
+      </mat-icon>
+    </ng-container>
+
+    <ng-template #discovered>
+      <div class="indicator-{{ cell.mineIndicator }}">
+        {{ cell.mineIndicator > 0 ? cell.mineIndicator : '' }}
+      </div>
+    </ng-template>
+  </ng-template>
+</div>
